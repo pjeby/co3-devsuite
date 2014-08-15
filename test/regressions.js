@@ -3,13 +3,11 @@ var assert = require('assert');
 
 describe('bugs', function(){
   it('#92', function(done){
-    var addProcessListeners = removeProcessListeners();
-
-    process.once('uncaughtException', function(err){
+    require('domain').create()
+    .once('error', function(err){
       err.message.should.equal('boom');
-      addProcessListeners();
       done();
-    })
+    }).run(function() { // start domain trapping
 
     co(function *() {
       yield function (done) {
@@ -18,17 +16,7 @@ describe('bugs', function(){
     })(function(err) {
       if (err) throw err;
     });
+    
+    }); // end domain trapping
   })
 })
-
-function removeProcessListeners(){
-  // Remove mocha listeners first.
-  var listeners = process.listeners('uncaughtException');
-  process.removeAllListeners('uncaughtException');
-
-  return function addProcessListeners(){
-    listeners.forEach(function(listener){
-      process.on('uncaughtException', listener);
-    });
-  }
-}

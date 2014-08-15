@@ -291,13 +291,11 @@ describe('co(fn)', function(){
 
     describe('when no callback is provided', function(){
       it('should rethrow', function(done){
-        var addProcessListeners = removeProcessListeners();
-
-        process.once('uncaughtException', function(err){
+        require('domain').create()
+        .once('error', function(err){
           err.message.should.equal('boom');
-          addProcessListeners();
           done();
-        })
+        }).run(function(){ // start domain trapping
 
         co(function *(){
           yield function (done) {
@@ -306,35 +304,26 @@ describe('co(fn)', function(){
             })
           }
         })();
+
+        }); // end domain trapping
       })
 
       it('should rethrow on a synchronous thunk', function(done){
-        var addProcessListeners = removeProcessListeners();
-
-        process.once('uncaughtException', function(err){
+        require('domain').create()
+        .once('error', function(err){
           err.message.should.equal('boom');
-          addProcessListeners();
           done();
-        })
+        }).run(function(){ // start domain trapping
 
         co(function *(){
           yield function (done) {
             done(new Error('boom'));
           }
         })();
+
+        }); // end domain trapping
       })
     })
   })
 })
 
-function removeProcessListeners(){
-  // Remove mocha listeners first.
-  var listeners = process.listeners('uncaughtException');
-  process.removeAllListeners('uncaughtException');
-
-  return function addProcessListeners(){
-    listeners.forEach(function(listener){
-      process.on('uncaughtException', listener);
-    });
-  }
-}
