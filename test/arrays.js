@@ -1,6 +1,6 @@
 
 var thunk = require('thunkify');
-var co = require('..');
+var co = require(process.env.CO_MODULE || '..');
 var fs = require('fs');
 
 var read = thunk(fs.readFile);

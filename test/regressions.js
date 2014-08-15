@@ -1,4 +1,4 @@
-var co = require('..');
+var co = require(process.env.CO_MODULE || '..');
 var assert = require('assert');
 
 describe('bugs', function(){
