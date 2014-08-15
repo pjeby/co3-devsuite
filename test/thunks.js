@@ -8,7 +8,7 @@ function get(val, err, error) {
     if (error) throw error;
     setTimeout(function(){
       done(err, val);
-    }, 10);
+    }, 1);
   }
 }
 

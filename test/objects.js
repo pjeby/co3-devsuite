@@ -62,9 +62,9 @@ describe('co(* -> yield {})', function(){
     
     co(function *(){
       var before = {
-        sun: timedThunk(30),
-        rain: timedThunk(20),
-        moon: timedThunk(10)
+        sun: timedThunk(3),
+        rain: timedThunk(2),
+        moon: timedThunk(1)
       };
 
       var after = yield before;

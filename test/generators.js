@@ -11,14 +11,14 @@ function sleep(ms) {
 
 function *moreWork(calls) {
   calls.push('three');
-  yield sleep(50);
+  yield sleep(1);
   calls.push('four');
 }
 
 function *work() {
   var calls = [];
   calls.push('one');
-  yield sleep(50);
+  yield sleep(1);
   calls.push('two');
   yield moreWork(calls);
   calls.push('five');

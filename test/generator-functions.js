@@ -10,7 +10,7 @@ function sleep(ms) {
 }
 
 function *work() {
-  yield sleep(50);
+  yield sleep(1);
   return 'yay';
 }
 
