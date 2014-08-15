@@ -1,7 +1,7 @@
 {
-  "name": "co",
+  "name": "co3-devsuite",
   "version": "3.1.0",
-  "description": "generator async flow control goodness",
+  "description": "Test/Benchmark suite for co alternatives",
   "keywords": [
     "async",
     "flow",
@@ -9,7 +9,7 @@
     "coro",
     "coroutine"
   ],
-  "devDependencies": {
+  "dependencies": {
     "should": "^3.0.0",
     "mocha": "^1.12.0",
     "bluebird": "^2.0.0",
@@ -17,15 +17,9 @@
     "request": "^2.36.0",
     "matcha": "~0.5.0"
   },
-  "scripts": {
-    "test": "make test"
-  },
-  "files": [
-    "index.js"
-  ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/visionmedia/co.git"
+    "url": "https://github.com/pjeby/co3-devsuite.git"
   }
 }
